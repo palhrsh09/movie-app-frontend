@@ -14,7 +14,7 @@ interface Media {
 }
 
 interface MediaTableProps {
-  setEditMedia: (media: Media) => void;
+  setEditMedia: any;
   setShowForm: (show: boolean) => void;
 }
 

@@ -47,12 +47,12 @@ export default function MediaForm({
       setFormData(editMedia);
     }
   }, [editMedia]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const apiUrl = import.meta.env.VITE_API_URL
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const url = editMedia
-      ? `http://localhost:5000/api/media/${editMedia.id}`
-      : 'http://localhost:5000/api/media';
+      ? `${apiUrl}/api/media/${editMedia.id}`
+      : `${apiUrl}/api/media`;
     const method = editMedia ? 'PUT' : 'POST';
 
     try {

@@ -1,12 +1,24 @@
+// src/App.tsx
 import { useState } from 'react';
-import "./App.css"
+import './App.css';
 import MediaForm from './components/MediaForm';
 import MediaTable from './components/MediaTable';
 import { Button } from './components/ui/button';
 
+export interface Media {
+  id?: number;
+  title: string;
+  type: 'Movie' | 'TV Show';
+  director: string;
+  budget: string;
+  location: string;
+  duration: string;
+  year: string;
+}
+
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [editMedia, setEditMedia] = useState(null);
+  const [editMedia, setEditMedia] = useState<Media | null>(null);
 
   return (
     <div className="container mx-auto p-4">
