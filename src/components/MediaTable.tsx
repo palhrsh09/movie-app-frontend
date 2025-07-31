@@ -26,7 +26,7 @@ export default function MediaTable({ setEditMedia, setShowForm }: MediaTableProp
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
   const lastRowRef = useRef<HTMLTableRowElement | null>(null);
-  const apiUrl = import.meta.env.VITE_API_URL
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchMedia = async (pageNum: number) => {
     setLoading(true);
@@ -81,18 +81,18 @@ export default function MediaTable({ setEditMedia, setShowForm }: MediaTableProp
   };
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full border-collapse">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border p-2">Title</th>
-            <th className="border p-2">Type</th>
-            <th className="border p-2">Director</th>
-            <th className="border p-2">Budget</th>
-            <th className="border p-2">Location</th>
-            <th className="border p-2">Duration</th>
-            <th className="border p-2">Year/Time</th>
-            <th className="border p-2">Actions</th>
+    <div className="w-full overflow-x-auto mt-6 rounded-xl shadow-sm border border-zinc-200">
+      <table className="w-full text-sm text-left text-zinc-700">
+        <thead className="bg-zinc-100 text-xs text-zinc-600 uppercase sticky top-0 z-10">
+          <tr>
+            <th className="px-4 py-3">Title</th>
+            <th className="px-4 py-3">Type</th>
+            <th className="px-4 py-3">Director</th>
+            <th className="px-4 py-3">Budget</th>
+            <th className="px-4 py-3">Location</th>
+            <th className="px-4 py-3">Duration</th>
+            <th className="px-4 py-3">Year</th>
+            <th className="px-4 py-3">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -100,35 +100,42 @@ export default function MediaTable({ setEditMedia, setShowForm }: MediaTableProp
             <tr
               key={item.id}
               ref={index === media.length - 1 ? lastRowRef : null}
-              className="hover:bg-gray-50"
+              className="border-t hover:bg-zinc-50"
             >
-              <td className="border p-2">{item.title}</td>
-              <td className="border p-2">{item.type}</td>
-              <td className="border p-2">{item.director}</td>
-              <td className="border p-2">{item.budget}</td>
-              <td className="border p-2">{item.location}</td>
-              <td className="border p-2">{item.duration}</td>
-              <td className="border p-2">{item.year}</td>
-              <td className="border p-2">
-                <Button
-                  variant="outline"
-                  className="mr-2"
-                  onClick={() => handleEdit(item)}
-                >
-                  Edit
-                </Button>
-                <Button
-                  variant="destructive"
-                  onClick={() => setDeleteId(item.id)}
-                >
-                  Delete
-                </Button>
+              <td className="px-4 py-2 whitespace-nowrap">{item.title}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{item.type}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{item.director}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{item.budget}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{item.location}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{item.duration}</td>
+              <td className="px-4 py-2 whitespace-nowrap">{item.year}</td>
+              <td className="px-4 py-2 whitespace-nowrap">
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => handleEdit(item)}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => setDeleteId(item.id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {loading && <p className="text-center">Loading...</p>}
+
+      {loading && (
+        <div className="py-4 text-center text-zinc-500">
+          Loading...
+        </div>
+      )}
+
       {deleteId && (
         <DeleteModal
           onConfirm={() => handleDelete(deleteId)}

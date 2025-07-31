@@ -47,7 +47,9 @@ export default function MediaForm({
       setFormData(editMedia);
     }
   }, [editMedia]);
-  const apiUrl = import.meta.env.VITE_API_URL
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const url = editMedia
@@ -68,26 +70,27 @@ export default function MediaForm({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto">
-        <h2 className="text-2xl font-semibold mb-6 text-center">
-          {editMedia ? 'Edit' : 'Add'} Media
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6">
+      <div className="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl overflow-y-auto max-h-[90vh]">
+        <h2 className="text-2xl font-bold text-zinc-800 mb-6 text-center">
+          {editMedia ? 'Edit Media' : 'Add Media'}
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="title">Title</Label>
+
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Title */}
+          <div className="col-span-1 sm:col-span-2">
+            <Label htmlFor="title" className="text-zinc-700">Title</Label>
             <Input
               id="title"
               value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               required
             />
           </div>
 
+          {/* Type */}
           <div>
-            <Label htmlFor="type">Type</Label>
+            <Label htmlFor="type" className="text-zinc-700">Type</Label>
             <Select
               value={formData.type}
               onValueChange={(value) =>
@@ -104,67 +107,63 @@ export default function MediaForm({
             </Select>
           </div>
 
+          {/* Director */}
           <div>
-            <Label htmlFor="director">Director</Label>
+            <Label htmlFor="director" className="text-zinc-700">Director</Label>
             <Input
               id="director"
               value={formData.director}
-              onChange={(e) =>
-                setFormData({ ...formData, director: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, director: e.target.value })}
               required
             />
           </div>
 
+          {/* Budget */}
           <div>
-            <Label htmlFor="budget">Budget</Label>
+            <Label htmlFor="budget" className="text-zinc-700">Budget</Label>
             <Input
               id="budget"
               value={formData.budget}
-              onChange={(e) =>
-                setFormData({ ...formData, budget: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
               required
             />
           </div>
 
+          {/* Location */}
           <div>
-            <Label htmlFor="location">Location</Label>
+            <Label htmlFor="location" className="text-zinc-700">Location</Label>
             <Input
               id="location"
               value={formData.location}
-              onChange={(e) =>
-                setFormData({ ...formData, location: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               required
             />
           </div>
 
+          {/* Duration */}
           <div>
-            <Label htmlFor="duration">Duration</Label>
+            <Label htmlFor="duration" className="text-zinc-700">Duration</Label>
             <Input
               id="duration"
               value={formData.duration}
-              onChange={(e) =>
-                setFormData({ ...formData, duration: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
               required
             />
           </div>
 
+          {/* Year */}
           <div>
-            <Label htmlFor="year">Year</Label>
+            <Label htmlFor="year" className="text-zinc-700">Year</Label>
             <Input
               id="year"
               value={formData.year}
-              onChange={(e) =>
-                setFormData({ ...formData, year: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, year: e.target.value })}
               required
             />
           </div>
 
-          <div className="flex justify-end gap-3 pt-4">
+          {/* Buttons */}
+          <div className="col-span-1 sm:col-span-2 flex justify-end gap-4 mt-4">
             <Button type="button" variant="outline" onClick={onClose}>
               Cancel
             </Button>
