@@ -19,4 +19,3 @@ This is the frontend of the **Media App**, built to manage your favorite movies 
 - 🔍 **Dynamic Pagination** – Automatically fetch more items as you scroll.
 - 💅 **Responsive UI** – Clean and responsive layout using Tailwind and ShadCN.
 
-## 📁 Folder Structur
