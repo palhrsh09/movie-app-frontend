@@ -26,11 +26,12 @@ export default function MediaTable({ setEditMedia, setShowForm }: MediaTableProp
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
   const lastRowRef = useRef<HTMLTableRowElement | null>(null);
+  const apiUrl = import.meta.env.VITE_API_URL
 
   const fetchMedia = async (pageNum: number) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/media?page=${pageNum}&limit=10`);
+      const response = await fetch(`${apiUrl}/api/media?page=${pageNum}&limit=10`);
       const data = await response.json();
       setMedia((prev) => (pageNum === 1 ? data.media : [...prev, ...data.media]));
       setTotalPages(data.totalPages);
@@ -71,7 +72,7 @@ export default function MediaTable({ setEditMedia, setShowForm }: MediaTableProp
 
   const handleDelete = async (id: number) => {
     try {
-      await fetch(`http://localhost:5000/api/media/${id}`, { method: 'DELETE' });
+      await fetch(`${apiUrl}/api/media/${id}`, { method: 'DELETE' });
       setMedia((prev) => prev.filter((item) => item.id !== id));
       setDeleteId(null);
     } catch (error) {
