@@ -81,17 +81,17 @@ export default function MediaTable({ setEditMedia, setShowForm }: MediaTableProp
   };
 
   return (
-    <div className="w-full overflow-x-auto mt-6 rounded-xl shadow-sm border border-zinc-200">
-      <table className="w-full text-sm text-left text-zinc-700">
+    <div className="w-full mt-6 overflow-x-auto rounded-xl border border-zinc-200 shadow-sm">
+      <table className="min-w-full text-sm text-left text-zinc-700">
         <thead className="bg-zinc-100 text-xs text-zinc-600 uppercase sticky top-0 z-10">
           <tr>
             <th className="px-4 py-3">Title</th>
-            <th className="px-4 py-3">Type</th>
-            <th className="px-4 py-3">Director</th>
-            <th className="px-4 py-3">Budget</th>
-            <th className="px-4 py-3">Location</th>
-            <th className="px-4 py-3">Duration</th>
-            <th className="px-4 py-3">Year</th>
+            <th className="px-4 py-3 hidden sm:table-cell">Type</th>
+            <th className="px-4 py-3 hidden md:table-cell">Director</th>
+            <th className="px-4 py-3 hidden lg:table-cell">Budget</th>
+            <th className="px-4 py-3 hidden lg:table-cell">Location</th>
+            <th className="px-4 py-3 hidden xl:table-cell">Duration</th>
+            <th className="px-4 py-3 hidden xl:table-cell">Year</th>
             <th className="px-4 py-3">Actions</th>
           </tr>
         </thead>
@@ -103,26 +103,16 @@ export default function MediaTable({ setEditMedia, setShowForm }: MediaTableProp
               className="border-t hover:bg-zinc-50"
             >
               <td className="px-4 py-2 whitespace-nowrap">{item.title}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{item.type}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{item.director}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{item.budget}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{item.location}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{item.duration}</td>
-              <td className="px-4 py-2 whitespace-nowrap">{item.year}</td>
+              <td className="px-4 py-2 whitespace-nowrap hidden sm:table-cell">{item.type}</td>
+              <td className="px-4 py-2 whitespace-nowrap hidden md:table-cell">{item.director}</td>
+              <td className="px-4 py-2 whitespace-nowrap hidden lg:table-cell">{item.budget}</td>
+              <td className="px-4 py-2 whitespace-nowrap hidden lg:table-cell">{item.location}</td>
+              <td className="px-4 py-2 whitespace-nowrap hidden xl:table-cell">{item.duration}</td>
+              <td className="px-4 py-2 whitespace-nowrap hidden xl:table-cell">{item.year}</td>
               <td className="px-4 py-2 whitespace-nowrap">
                 <div className="flex flex-wrap gap-2">
-                  <Button
-                    variant="outline"
-                    onClick={() => handleEdit(item)}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    onClick={() => setDeleteId(item.id)}
-                  >
-                    Delete
-                  </Button>
+                  <Button variant="outline" onClick={() => handleEdit(item)}>Edit</Button>
+                  <Button variant="destructive" onClick={() => setDeleteId(item.id)}>Delete</Button>
                 </div>
               </td>
             </tr>
